@@ -33,7 +33,9 @@ To run the Java Spring Boot application, follow these steps:
 
 Here is the Entity-Relationship (ER) diagram for the inventory management system:
 
-![ER Diagram](InventoryManagmentSystem.png)
+<div style="background-color: white;">
+<img src="photos/InventoryManagmentSystem.png">
+</div>
 
 The diagram shows the relationships between the entities in the system, including products, categories, suppliers, and inventory. Each entity is represented by a rectangle, and the relationships between entities are represented by lines connecting them.
 ## Collection Resource
