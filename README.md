@@ -37,10 +37,14 @@ Here is the Entity-Relationship (ER) diagram for the inventory management system
 <img src="photos/InventoryManagmentSystem.png">
 </div>
 
+
 The diagram shows the relationships between the entities in the system, including products, categories, suppliers, and inventory. Each entity is represented by a rectangle, and the relationships between entities are represented by lines connecting them.
 ## Collection Resource
 ### Request and Response Formats
 -  `All API requests and responses are in JSON format.`
+### SwaggerHub documentation using OpenAPI 3.1.0 
+[SwaggerHub documentation](https://app.swaggerhub.com/apis-docs/LUTFIQASIM2002_1/inventory_managment_system/1.0.0).
+
 
 ### Collection Resource (/products)
 #### HTTP Requests for product entity
