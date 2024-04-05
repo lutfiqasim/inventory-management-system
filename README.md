@@ -1,6 +1,6 @@
 # Inventory Management System APIs
 
-This document outlines the APIs for a basic inventory management system. These APIs can be used to perform various operations related to managing inventory, such as adding products, categories, updating quantities, and retrieving inventory information, and many other of the basic operations that could be done on such a system.
+This document represetnts APIs for a basic inventory management system. These APIs can be used to perform various operations related to managing inventory, such as adding products, categories, updating quantities, and retrieving inventory information, and many other of the basic operations that could be done on such a system.
 
 ## Resource
 The following resources are introduced in this system:
@@ -95,4 +95,5 @@ The diagram shows the relationships between the entities in the system, includin
 | DELETE | /suppliers/{id}   | Delete an existing supplier| 204 No Content: Successfully deleted the supplier<br>404 Not Found: Supplier not found<br>500 Internal Server Error: An error occurred while deleting the supplier | N/A| N/A |
 ---
 
-
+### Contribution
+This project is developed as part of the Web Services class at Birzeit University, taught by Dr. Mohammad Kharmah.
