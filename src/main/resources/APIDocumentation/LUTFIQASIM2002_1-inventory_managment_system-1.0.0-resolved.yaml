@@ -1,0 +1,880 @@
+---
+openapi: 3.1.0
+info:
+  title: inventory_management_system v1
+  description: "This is version 1 of the inventory management system API. \nIn this API, we have mocked four core components of an inventory management system: products, inventory, suppliers, and categories. \nThe API provides endpoints to manage these components, including creating, reading, updating, and deleting operations. \n\nSome useful links:\n- [The inventory management system repository](https://github.com/lutfiqasim/inventory-management-system)"
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: lutfiqasim2002@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+tags:
+- name: products
+  description: Everything about inventory products
+- name: inventory
+  description: Everything about inventories in the system
+- name: categories
+  description: Everything about categories
+- name: suppliers
+  description: Everything about suppliers
+paths:
+  /products:
+    get:
+      tags:
+      - products
+      summary: Get all products
+      responses:
+        "200":
+          description: Successfully retrieved the list of products
+          content:
+            application/json:
+              example:
+              - id: "1"
+                categoryId: "1"
+                supplierId: "1"
+                prod_name: Product 1
+                prod_description: description
+                price: 50
+        "500":
+          description: An error occurred while retrieving the products
+        default:
+          description: Unexpected error
+    post:
+      tags:
+      - products
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: integer
+                  format: int64
+                supplierId:
+                  type: integer
+                  format: int64
+                prod_name:
+                  type: string
+                prod_description:
+                  type: string
+                price:
+                  type: integer
+                  format: int32
+              required:
+              - categoryId
+              - supplierId
+              - prod_name
+              - price
+              additionalProperties: false
+      responses:
+        "201":
+          description: Successfully created the product
+          content:
+            application/json:
+              example:
+                categoryId: "1"
+                supplierId: "1"
+                prod_name: New Product
+                prod_description: ""
+                price: 20
+        "400":
+          description: "Bad Request, Invalid request body or missing fields"
+        "500":
+          description: An error occurred while creating the product
+  /products/{id}:
+    get:
+      tags:
+      - products
+      summary: Get product by id
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the product to retrieve
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully retrieved the current product
+          content:
+            application/json:
+              example:
+                id: "1"
+                categoryId: "1"
+                supplierId: "1"
+                prod_name: Product 1
+                prod_description: description
+                price: 50
+        "404":
+          description: Product with given id not found
+        "500":
+          description: An error occurred while retrieving the products
+        default:
+          description: Unexpected error
+    put:
+      tags:
+      - products
+      summary: Update an existing product
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the product to update
+        schema:
+          type: string
+      requestBody:
+        description: update an existing product in the system
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: integer
+                  format: int64
+                supplierId:
+                  type: integer
+                  format: int64
+                prod_name:
+                  type: string
+                prod_description:
+                  type: string
+                price:
+                  type: integer
+                  format: int32
+              required:
+              - categoryId
+              - supplierId
+              - prod_name
+              - price
+              additionalProperties: false
+        required: true
+      responses:
+        "200":
+          description: Successfully updated the product
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: "Product with {id} not found"
+        "500":
+          description: An error occurred while updating the product
+    patch:
+      tags:
+      - products
+      summary: Partially update an existing product
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the product to update
+        schema:
+          type: string
+      requestBody:
+        description: Update an existing product in the system
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                categoryId:
+                  type: integer
+                  format: int64
+                supplierId:
+                  type: integer
+                  format: int64
+                prod_name:
+                  type: string
+                prod_description:
+                  type: string
+                price:
+                  type: integer
+                  format: int32
+              additionalProperties: false
+        required: true
+      responses:
+        "200":
+          description: Successfully updated the product
+        "400":
+          description: Invalid request body or required fields must specify field to update
+        "404":
+          description: Product with given ID not found
+        "500":
+          description: An error occurred while updating the product
+    delete:
+      tags:
+      - products
+      summary: Delete an existing product
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the product to update
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content Successfully deleted the product
+        "404":
+          description: Product not found
+        "500":
+          description: An error occurred while deleting the product
+  /inventory:
+    get:
+      tags:
+      - inventory
+      summary: Get all inventory
+      responses:
+        "200":
+          description: Successfully retrieved the list of inventory
+          content:
+            application/json:
+              example:
+              - inventory_id: "1"
+                productId: "1"
+                quantity: 50
+                last_updated: 2013-01-19 03:14:07
+              - inventory_id: "2"
+                productId: "2"
+                quantity: 100
+                last_updated: 2023-01-19 03:14:07
+        "500":
+          description: An error occurred while retrieving the inventory
+    post:
+      tags:
+      - inventory
+      summary: Create a new supplier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inventory_id:
+                  type: integer
+                productId:
+                  type: integer
+                  format: int64
+                quantity:
+                  type: integer
+                last_updated:
+                  type: string
+                  format: date-time
+              required:
+              - productId
+              - quantity
+              - last_updated
+              - ""
+      responses:
+        "201":
+          description: Successfully created the supplier
+          content:
+            application/json:
+              example:
+                id: "3"
+                inventory_id: "1"
+                productId: "1"
+                quantity: 50
+                last_updated: 2013-01-19 03:14:07
+        "400":
+          description: Invalid request body or missing required fields
+        "500":
+          description: An error occurred while creating the supplier
+  /inventory/{id}:
+    get:
+      tags:
+      - inventory
+      summary: Get inventory by ID
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the inventory to retrieve
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully retrieved the supplier
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  inventory_id:
+                    type: string
+                  productId:
+                    type: string
+                  quantity:
+                    type: integer
+                  last_updated:
+                    type: string
+                    format: date-time
+        "404":
+          description: Inventory with given ID not found
+        "500":
+          description: An error occurred while retrieving the supplier
+    put:
+      tags:
+      - inventory
+      summary: Update an existing supplier
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the inventory to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inventory_id:
+                  type: string
+                productId:
+                  type: string
+                quantity:
+                  type: integer
+                last_updated:
+                  type: string
+                  format: date-time
+      responses:
+        "200":
+          description: Successfully updated the supplier
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: Inventory not found
+        "500":
+          description: An error occurred while updating the supplier
+    patch:
+      tags:
+      - inventory
+      summary: Partially update an existing supplier
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the inventory to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inventory_id:
+                  type: string
+                productId:
+                  type: string
+                quantity:
+                  type: integer
+                last_updated:
+                  type: string
+                  format: date-time
+      responses:
+        "200":
+          description: Successfully updated the supplier
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: Inventory not found
+        "500":
+          description: An error occurred while updating the supplier
+    delete:
+      tags:
+      - inventory
+      summary: Delete an existing supplier
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the inventory to delete
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Successfully deleted the supplier
+        "404":
+          description: Inventory not found
+        "500":
+          description: An error occurred while deleting the supplier
+  /categories:
+    get:
+      tags:
+      - categories
+      summary: Get all categories
+      responses:
+        "200":
+          description: Successfully retrieved the list of categories
+          content:
+            application/json:
+              example:
+              - id: "1"
+                title: Electronics
+                description: Electronics category description
+              - id: "2"
+                title: Clothing
+                description: Clothing category description
+        "500":
+          description: An error occurred while retrieving the categories
+    post:
+      tags:
+      - categories
+      summary: Create a new category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+              required:
+              - title
+              - description
+      responses:
+        "201":
+          description: Successfully created the category
+          content:
+            application/json:
+              example:
+                id: "3"
+                title: New Category
+                description: New category description
+        "400":
+          description: Invalid request body or missing required fields
+        "500":
+          description: An error occurred while creating the category
+  /categories/{id}:
+    get:
+      tags:
+      - categories
+      summary: Get category by ID
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the category to retrieve
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully retrieved the category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  description:
+                    type: string
+        "404":
+          description: Category with given ID not found
+        "500":
+          description: An error occurred while retrieving the category
+    put:
+      tags:
+      - categories
+      summary: Update an existing category
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the category to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+      responses:
+        "200":
+          description: Successfully updated the category
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: Category not found
+        "500":
+          description: An error occurred while updating the category
+    patch:
+      tags:
+      - categories
+      summary: Partially update an existing category
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the category to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+      responses:
+        "200":
+          description: Successfully updated the category
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: Category not found
+        "500":
+          description: An error occurred while updating the category
+    delete:
+      tags:
+      - categories
+      summary: Delete an existing category
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the category to delete
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Successfully deleted the category
+        "404":
+          description: Category not found
+        "500":
+          description: An error occurred while deleting the category
+  /suppliers:
+    get:
+      tags:
+      - suppliers
+      summary: Get all suppliers
+      responses:
+        "200":
+          description: Successfully retrieved the list of suppliers
+          content:
+            application/json:
+              example:
+              - supplierId: "1"
+                name: name1
+                email: example1@example.com
+                phoneNo: "05912345610"
+              - supplierId: "2"
+                name: name2
+                email: example2@example.com
+                phoneNo: "05911145610"
+        "500":
+          description: An error occurred while retrieving the categories
+    post:
+      tags:
+      - suppliers
+      summary: Create a new supplier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phoneNo:
+                  type: string
+      responses:
+        "201":
+          description: Successfully created the supplier
+          content:
+            application/json:
+              example:
+                supplierId: "3"
+                name: name3
+                email: example3@example.com
+                phoneNo: "05911145910"
+        "400":
+          description: Invalid request body or missing required fields
+        "500":
+          description: An error occurred while creating the category
+  /suppliers/{id}:
+    get:
+      tags:
+      - suppliers
+      summary: Get supplier by ID
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the supplier to retrieve
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successfully retrieved the supplier
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  supplierId:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                  phoneNo:
+                    type: string
+                  email:
+                    type: string
+        "404":
+          description: supplier with given ID not found
+        "500":
+          description: An error occurred while retrieving the supplier
+    put:
+      tags:
+      - suppliers
+      summary: Update an existing supplier
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the supplier to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phoneNo:
+                  type: string
+      responses:
+        "200":
+          description: Successfully updated the supplier
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: supplier not found
+        "500":
+          description: An error occurred while updating the supplier
+    patch:
+      tags:
+      - suppliers
+      summary: Partially update an existing supplier
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the supplier to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phoneNo:
+                  type: string
+      responses:
+        "200":
+          description: Successfully updated the supplier
+        "400":
+          description: Invalid request body or missing required fields
+        "404":
+          description: supplier not found
+        "500":
+          description: An error occurred while updating the supplier
+    delete:
+      tags:
+      - suppliers
+      summary: Delete an existing supplier
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the supplier to delete
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Successfully deleted the supplier
+        "404":
+          description: Supplier not found
+        "500":
+          description: An error occurred while deleting the supplier
+components:
+  schemas:
+    NewProduct:
+      type: object
+      properties:
+        categoryId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        prod_name:
+          type: string
+        prod_description:
+          type: string
+        price:
+          type: integer
+          format: int32
+      required:
+      - categoryId
+      - supplierId
+      - prod_name
+      - price
+      additionalProperties: false
+    UpdateProduct:
+      type: object
+      properties:
+        categoryId:
+          type: integer
+          format: int64
+        supplierId:
+          type: integer
+          format: int64
+        prod_name:
+          type: string
+        prod_description:
+          type: string
+        price:
+          type: integer
+          format: int32
+      additionalProperties: false
+    NewInventory:
+      type: object
+      properties:
+        inventory_id:
+          type: integer
+        productId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+        last_updated:
+          type: string
+          format: date-time
+      required:
+      - productId
+      - quantity
+      - last_updated
+      - ""
+    Inventory:
+      type: object
+      properties:
+        inventory_id:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: integer
+        last_updated:
+          type: string
+          format: date-time
+    UpdateInventory:
+      type: object
+      properties:
+        inventory_id:
+          type: string
+        productId:
+          type: string
+        quantity:
+          type: integer
+        last_updated:
+          type: string
+          format: date-time
+    NewCategory:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+      required:
+      - title
+      - description
+    Category:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+    UpdateCategory:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+    Supplier:
+      type: object
+      properties:
+        supplierId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phoneNo:
+          type: string
+        email:
+          type: string
+    NewSupplier:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phoneNo:
+          type: string
+    UpdateSupplier:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phoneNo:
+          type: string
