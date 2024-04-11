@@ -29,9 +29,22 @@ public class CategoryController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getAllCategories() {
+    public ResponseEntity<?> getAllCategories(@RequestParam(name = "orderByName", required = false, defaultValue = "false") boolean sortByName) {
         try {
-            List<CategoryDto> categoryDtos = categoryService.getAllCategories();
+            List<CategoryDto> categoryDtos;
+            if (sortByName) {
+                System.out.println("HERE");
+                categoryDtos = categoryService.getAllCategoriesSortByName();
+            } else {
+                categoryDtos = categoryService.getAllCategories();
+
+            }
+            System.out.println("-----------------------");
+            
+            for (CategoryDto c : categoryDtos) {
+                System.out.println(c.toString());
+            }
+            System.out.println("-----------------------");
             return ResponseEntity.ok(categoryDtos);
         } catch (Exception e) {
             // Return an internal server error response
@@ -62,7 +75,7 @@ public class CategoryController {
             return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
-                    body("An error occurred while retrieving categories");
+                    body("An error occurred while creating category");
         }
     }
 
@@ -105,10 +118,6 @@ public class CategoryController {
 
     @PatchMapping("/{categoryId}")
     public ResponseEntity<?> updateCategoryPartially(@PathVariable Long categoryId, @Valid @RequestBody CategoryPartialDto categoryDto, BindingResult result) {
-        System.out.println("HERE_-----------------");
-        System.out.println(categoryDto.toString());
-        System.out.println("HERE_-----------------");
-
         if (result.hasErrors()) {
             Map<String, Object> errorMap = new HashMap<>();
             for (FieldError error : result.getFieldErrors()) {

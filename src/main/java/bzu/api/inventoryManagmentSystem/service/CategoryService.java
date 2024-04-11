@@ -20,4 +20,5 @@ public interface CategoryService {
     void deleteCategory(long id);
 
 
+    List<CategoryDto> getAllCategoriesSortByName();
 }

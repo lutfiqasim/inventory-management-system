@@ -7,6 +7,7 @@ import bzu.api.inventoryManagmentSystem.model.Category;
 import bzu.api.inventoryManagmentSystem.repository.CategoryRepository;
 import bzu.api.inventoryManagmentSystem.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,6 +73,13 @@ public class CategoryServiceImp implements CategoryService {
         if (!categoryRepository.existsById(id))
             throw getResourceNotFoundException(id);
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategoriesSortByName() {
+        List<Category> categoryList = categoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+        return categoryList.stream().map(this::entityToMap).
+                collect(Collectors.toList());
     }
 
     private static ResourceNotFoundException getResourceNotFoundException(Long id) {
