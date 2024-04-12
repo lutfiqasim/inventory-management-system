@@ -6,8 +6,8 @@ This document represetnts APIs for a basic inventory management system. These AP
 The following resources are introduced in this system:
 - `Product`: Represents the available products in the inventory. products have relation with categories and suppliers.
 - `Category`: Represents different categories in which products are organized. Each product belongs to one category.
-- `Supplier`: Represents the suppliers from whom the products are purchased. Products may have relations with suppliers.
-- `Inventory`: Represents the current stock/availability of each product. It may have relations with products.
+- `Supplier`: Represents the suppliers from whom the products are purchased. Products have relations with suppliers.
+- `Inventory`: Represents the current stock/availability of each product. it have relations with products.
 
 ## How to Run the Application
 To run the Java Spring Boot application, follow these steps:
