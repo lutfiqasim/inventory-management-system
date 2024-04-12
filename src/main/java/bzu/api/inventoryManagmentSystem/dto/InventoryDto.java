@@ -1,13 +1,24 @@
 package bzu.api.inventoryManagmentSystem.dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import org.hibernate.annotations.CurrentTimestamp;
+
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class InventoryDto {
     private Long id;
+    @Positive
+    @DecimalMin(value = "0.0", message = "Quantity must be positive")
     private Long quantity;
 
+    @CurrentTimestamp
     private Timestamp lastUpdated;
 
+    @NotNull
     private ProductDto productDto;
 
     public InventoryDto() {
@@ -36,8 +47,8 @@ public class InventoryDto {
         this.quantity = quantity;
     }
 
-    public Timestamp getLastUpdated() {
-        return lastUpdated;
+    public String getLastUpdated() {
+        return getFormattedLastUpdated();
     }
 
     public void setLastUpdated(Timestamp lastUpdated) {
@@ -52,13 +63,20 @@ public class InventoryDto {
         this.productDto = productDto;
     }
 
+
+    private String getFormattedLastUpdated() {
+        LocalDateTime lastUpdatedDateTime = lastUpdated.toLocalDateTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/M/d: H:mm");
+        return lastUpdatedDateTime.format(formatter);
+    }
+
     @Override
     public String toString() {
         return "InventoryDto{" +
                 "id=" + id +
                 ", quantity=" + quantity +
-                ", lastUpdated=" + lastUpdated +
-                ", productId=" + productDto +
+                ", lastUpdated=" + getLastUpdated() +
+                ", product=" + productDto +
                 '}';
     }
 }

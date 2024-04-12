@@ -1,6 +1,7 @@
 package bzu.api.inventoryManagmentSystem.model;
 
 import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +15,7 @@ public class Inventory {
     @Column(nullable = false)
     private Long quantity;
 
-    @Column(name = "last_updated", nullable = false,
+    @Column(name = "last_updated", nullable = true,
             columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private Timestamp lastUpdated;
 
@@ -43,11 +44,11 @@ public class Inventory {
         this.quantity = quantity;
     }
 
-    public String getLastUpdated() {
-        return getFormattedLastUpdated();
+    public Timestamp getLastUpdated() {
+        return lastUpdated;
     }
 
-    private String getFormattedLastUpdated() {
+    public String getFormattedLastUpdated() {
         LocalDateTime lastUpdatedDateTime = lastUpdated.toLocalDateTime();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy/M/d: H:mm");
         return lastUpdatedDateTime.format(formatter);
@@ -70,7 +71,7 @@ public class Inventory {
         return "Inventory{" +
                 "id=" + id +
                 ", quantity=" + quantity +
-                ", lastUpdated=" + getLastUpdated() +
+                ", lastUpdated=" + getFormattedLastUpdated() +
                 ", product=" + product +
                 '}';
     }
