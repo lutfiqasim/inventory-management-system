@@ -1,5 +1,6 @@
 package bzu.api.inventoryManagmentSystem.controller;
 
+import bzu.api.inventoryManagmentSystem.controller.handler.ValidationExceptionHandler;
 import bzu.api.inventoryManagmentSystem.dto.CategoryDto;
 import bzu.api.inventoryManagmentSystem.dto.CategoryPartialDto;
 import bzu.api.inventoryManagmentSystem.exception.BadRequestException;
@@ -48,20 +49,8 @@ public class CategoryController {
 
     @PostMapping("")
     public ResponseEntity<?> addNewCategory(@Valid @RequestBody CategoryDto categoryDto, BindingResult result) {
-        //checks for erros based on the dto validation
-//        if (result.hasErrors()) {
-//            Map<String, Object> errorResponse = new HashMap<>();
-//            errorResponse.put("message", "validation failed");
-//            errorResponse.put("errors", result.getAllErrors());
-//            return ResponseEntity.badRequest().body(errorResponse);
-//        }
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Category", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             CategoryDto createdCategory = categoryService.createCategory(categoryDto);
@@ -89,12 +78,7 @@ public class CategoryController {
     @PutMapping("/{categoryId}")
     public ResponseEntity<?> updateExistingCategory(@PathVariable Long categoryId, @Valid @RequestBody CategoryDto categoryDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Category", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             categoryService.updateCategory(categoryDto, categoryId);
@@ -112,12 +96,7 @@ public class CategoryController {
     @PatchMapping("/{categoryId}")
     public ResponseEntity<?> updateCategoryPartially(@PathVariable Long categoryId, @Valid @RequestBody CategoryPartialDto categoryDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Category", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             categoryService.updateCategoryPartially(categoryDto, categoryId);

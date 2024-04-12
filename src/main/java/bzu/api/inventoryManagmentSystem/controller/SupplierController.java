@@ -1,5 +1,6 @@
 package bzu.api.inventoryManagmentSystem.controller;
 
+import bzu.api.inventoryManagmentSystem.controller.handler.ValidationExceptionHandler;
 import bzu.api.inventoryManagmentSystem.dto.SupplierDto;
 import bzu.api.inventoryManagmentSystem.dto.SupplierPartialDto;
 import bzu.api.inventoryManagmentSystem.exception.BadRequestException;
@@ -41,12 +42,7 @@ public class SupplierController {
     @PostMapping("")
     public ResponseEntity<?> addNewSupplier(@Valid @RequestBody SupplierDto supplierDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Supplier", errorMap.toString()));
+            return ValidationExceptionHandler.validate(result, "Supplier");
         }
         try {
             SupplierDto createdSupplier = supplierService.createSupplier(supplierDto);
@@ -75,12 +71,7 @@ public class SupplierController {
     @PutMapping("/{supplierId}")
     public ResponseEntity<?> updateExistingSupplier(@PathVariable Long supplierId, @Valid @RequestBody SupplierDto supplierDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Supplier", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             supplierService.updateSupplier(supplierId, supplierDto);
@@ -97,12 +88,7 @@ public class SupplierController {
     @PatchMapping("/{supplierId}")
     public ResponseEntity<?> updateSupplierPartially(@PathVariable Long supplierId, @Valid @RequestBody SupplierPartialDto supplierPartialDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Category", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result,"Product");
         }
         try {
             supplierService.updateSupplierPartially(supplierId, supplierPartialDto);

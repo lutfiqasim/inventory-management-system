@@ -1,5 +1,6 @@
 package bzu.api.inventoryManagmentSystem.controller;
 
+import bzu.api.inventoryManagmentSystem.controller.handler.ValidationExceptionHandler;
 import bzu.api.inventoryManagmentSystem.dto.ProductDto;
 import bzu.api.inventoryManagmentSystem.dto.ProductPartialDto;
 import bzu.api.inventoryManagmentSystem.exception.BadRequestException;
@@ -58,12 +59,7 @@ public class ProductController {
     @PostMapping("")
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDto productDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Product", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             ProductDto dto = getProductDto(productDto);
@@ -82,12 +78,7 @@ public class ProductController {
     @PutMapping("/{productId}")
     public ResponseEntity<?> updateExistingProduct(@PathVariable Long productId, @Valid @RequestBody ProductDto productDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().body(
-                    new BadRequestException("Validation failed", "Product", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             productService.updateProduct(productId, productDto);
@@ -107,12 +98,7 @@ public class ProductController {
     @PatchMapping("/{productId}")
     public ResponseEntity<?> updateCategoryPratially(@PathVariable Long productId, @Valid @RequestBody ProductPartialDto productPartialDto, BindingResult result) {
         if (result.hasErrors()) {
-            Map<String, Object> errorMap = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errorMap.put(error.getField(), error.getDefaultMessage());
-            }
-            return ResponseEntity.badRequest().
-                    body(new BadRequestException("Validation failed", "Product", errorMap.toString()).toString());
+            return ValidationExceptionHandler.validate(result, "Product");
         }
         try {
             productService.updateProductPartially(productId, productPartialDto);
@@ -139,7 +125,7 @@ public class ProductController {
                     body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
-                    body("An error occurred while updating category");
+                    body("An error occurred while deleting product");
         }
 
     }

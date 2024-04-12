@@ -1,5 +1,6 @@
 package bzu.api.inventoryManagmentSystem.model;
 
+import bzu.api.inventoryManagmentSystem.dto.ProductDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -103,5 +104,16 @@ public class Product {
                 ", supplier=" + supplier +
                 ", category=" + category +
                 '}';
+    }
+
+    public ProductDto toProductDto() {
+        ProductDto productDto = new ProductDto();
+        productDto.setProductId(this.id);
+        productDto.setCategoryDto(this.category.toCategoryDto());
+        productDto.setSupplierDto(this.supplier.toSupplierDto());
+        productDto.setPrice(this.price);
+        productDto.setProductName(this.productName);
+        productDto.setProdDescription(this.prodDescription);
+        return productDto;
     }
 }
