@@ -1,6 +1,7 @@
 package bzu.api.inventoryManagmentSystem.dto;
 
 
+import bzu.api.inventoryManagmentSystem.model.Supplier;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -59,6 +60,15 @@ public class SupplierDto {
         this.phoneNo = phoneNo;
     }
 
+    public Supplier toSupplier() {
+        Supplier supplier = new Supplier();
+        supplier.setId(this.id);
+        supplier.setName(this.name);
+        supplier.setEmail(this.email);
+        supplier.setPhoneNo(this.phoneNo);
+        return supplier;
+    }
+
     @Override
     public String toString() {
         return "SupplierDto{" +
@@ -68,4 +78,5 @@ public class SupplierDto {
                 ", phoneNo='" + phoneNo + '\'' +
                 '}';
     }
+
 }

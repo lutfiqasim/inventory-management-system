@@ -1,5 +1,6 @@
 package bzu.api.inventoryManagmentSystem.model;
 
+import bzu.api.inventoryManagmentSystem.dto.SupplierDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -11,7 +12,7 @@ public class Supplier {
 
     @Column(name = "supplier_name", nullable = false)
     private String name;
-    @Column(name = "supplier_email", nullable = false)
+    @Column(name = "supplier_email", nullable = false, columnDefinition = "VARCHAR(50) UNIQUE")
     @Size(min = 10, max = 50)
     private String email;
     @Column(nullable = false)
@@ -25,6 +26,10 @@ public class Supplier {
         this.name = name;
         this.email = email;
         this.phoneNo = phoneNo;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -64,4 +69,15 @@ public class Supplier {
                 ", phoneNo='" + phoneNo + '\'' +
                 '}';
     }
+
+    public SupplierDto toSupplierDto() {
+        SupplierDto supplierDto = new SupplierDto();
+        supplierDto.setId(this.id);
+        supplierDto.setEmail(this.email);
+        supplierDto.setPhoneNo(this.phoneNo);
+        supplierDto.setName(this.name);
+        return supplierDto;
+    }
+
+
 }

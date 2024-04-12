@@ -33,18 +33,11 @@ public class CategoryController {
         try {
             List<CategoryDto> categoryDtos;
             if (sortByName) {
-                System.out.println("HERE");
                 categoryDtos = categoryService.getAllCategoriesSortByName();
             } else {
                 categoryDtos = categoryService.getAllCategories();
 
             }
-            System.out.println("-----------------------");
-            
-            for (CategoryDto c : categoryDtos) {
-                System.out.println(c.toString());
-            }
-            System.out.println("-----------------------");
             return ResponseEntity.ok(categoryDtos);
         } catch (Exception e) {
             // Return an internal server error response
