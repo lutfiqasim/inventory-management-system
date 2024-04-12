@@ -12,7 +12,7 @@ The following resources are introduced in this system:
 ## How to Run the Application
 To run the Java Spring Boot application, follow these steps:
 
-1. Make sure you have Java Development Kit (JDK version 17 or higher) installed on your machine. 
+1. Make sure you have Java Development Kit (JDK version 21 or higher) installed on your machine. 
 
 2. Clone the repository or download the source code for the application.
 
