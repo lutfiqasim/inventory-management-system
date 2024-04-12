@@ -1,0 +1,3236 @@
+{
+	"info": {
+		"_postman_id": "9b4dd16c-1369-4272-9216-37fab5b5c460",
+		"name": "InventoryManagmentSystemAPI",
+		"description": "| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| --- | --- | --- | --- | --- | --- |\n| GET | /products | Get all products | `200 OK`: Successfully,retrieved the list of products  <br>`500 Internal Server Error`: An error occurred while retrieving the products | N/A | `json [ { \"id\": \"1\", \"categoryId\": \"1\",\"supplierId\": \"1\",\"prod_name\": \"Product 1\", \"prod_describtion\": \"description\",\"price\": 50 }, { \"id\": \"2\", \"categoryId\": \"1\",\"supplierId\": \"1\",\"prod_name\": \"Product 2\", \"prod_describtion\": \"description 2\",\"price\": 100 } ]` |\n| GET | /products/{id} | Get product with id= {id} | `200 OK`: Successfully retrieved the product  <br>`404 Not found`: Product with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the products | N/A | `json { \"id\": \"1\", \"categoryId\": \"1\",\"supplierId\": \"1\",\"prod_name\": \"Product 1\", \"prod_describtion\": \"description\",\"price\": 50 }` |\n| POST | /products | Create a new product | 201 Created: Successfully created the product  <br>400 Bad Request: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the product | `json { \"name\": \"New Product\", \"categoryId\": \"1\",\"supplierId\": \"1\", \"prod_describtion\": \"\", \"price\": 20 }` | `json { \"id\": \"3\", \"name\": \"New Product\", \"categoryId\": \"1\", \"supplierId\": \"1\", \"prod_describtion\": \"\", \"price\": 20 }` |\n| PUT | /products/{id} | Update an existing product | 200 OK: Successfully updated the product  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Product not found  <br>500 Internal Server Error: An error occurred while updating the product | `json { \"name\": \"Updated Product\", \"UpdatedcategoryId\": \"2\",\"updatedsupplierId\": \"1\", \"prod_describtion\": \"Updated\", \"price\": 10 }` \\`\\`\\` | N/A |\n| PATCH | /products/{id} | Partially update an existing product | 200 OK: Successfully updated the product  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Product not found  <br>500 Internal Server Error: An error occurred while updating the product | `json { \"price\": 150 }` | N/A |\n| DELETE | /products/{id} | Delete an existing product | 204 No Content: Successfully deleted the product  <br>404 Not Found: Product not found  <br>500 Internal Server Error: An error occurred while deleting the product | N/A | N/A |\n| \\--- |  |  |  |  |  |\n| \\### Collection Resource (/inventory) |  |  |  |  |  |\n| \\#### HTTP Requests for inventory entity |  |  |  |  |  |\n| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| \\-------- | \\------------------ | \\--------------------------------------- | \\-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | \\----------------------------------------------------------------------------------------------------- | \\----------------------------------------------------------------------------------------------------- |\n| GET | /inventory | Get all inventory | `200 OK`: Successfully,retrieved the list of inventory  <br>`500 Internal Server Error`: An error occurred while retrieving the inventory | N/A | `json [ { \"id\": \"1\", \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }, { \"id\": \"2\", \"inventory_id\": \"2\",\"productId\": \"2\",\"quantity\": 100, \"last_updated\": \"2023-01-19 03:14:07\" } ]` |\n| GET | /inventory/{id} | Get inventory with id= {id} | `200 OK`: Successfully retrieved the inventory  <br>`404 Not found`: inventory with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the inventory | N/A | `json { \"id\": \"1\", \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` |\n| POST | /inventory | Create a new inventory | 201 Created: Successfully created the inventory  <br>400 Bad Request: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the inventory | `json { \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` | `json { \"id\": \"3\", \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` |\n| PUT | /inventory/{id} | Update an existing inventory | 200 OK: Successfully updated the inventory  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: inventory not found  <br>500 Internal Server Error: An error occurred while updating the inventory | `json { \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` | N/A |\n| PATCH | /inventory/{id} | Partially update an existing inventory | 200 OK: Successfully updated the inventory  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: inventory not found  <br>500 Internal Server Error: An error occurred while updating the inventory | `json { \"quantity\": 15 }` | N/A |\n| DELETE | /inventory/{id} | Delete an existing inventory | 204 No Content: Successfully deleted the inventory  <br>404 Not Found: inventory not found  <br>500 Internal Server Error: An error occurred while deleting the inventory | N/A | N/A |\n| \\--- |  |  |  |  |  |\n| \\### Collection Resource (/categories) |  |  |  |  |  |\n| \\#### HTTP Requests for category entity |  |  |  |  |  |\n\n| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| --- | --- | --- | --- | --- | --- |\n| GET | /categories | Get all categories | `200 OK`: Successfully,retrieved the list of categories  <br>`500 Internal Server Error`: An error occurred while retrieving the categories | N/A | `json [ { \"id\": \"1\", \"title\": \"Electronics\", \"description\": \"Electronics category description\" }, { \"id\": \"2\", \"title\": \"Clothing\", \"description\": \"Clothing category description\" } ]` |\n| GET | /categories/{id} | Get category with id= {id} | `200 OK`: Successfully retrieved the category  <br>`404 Not found`: categoriy with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the category | N/A | `json { \"id\": \"1\", \"title\": \"Electronics\", \"description\": \"Electronics category description\" }` |\n| POST | /categories | Create a new category | 201 Created: Successfully created the category  <br>`400 Bad Request`: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the category | `json { \"title\": \"New Category\", \"description\": \"New category description\" }` | `json { \"id\": \"3\", \"title\": \"New Category\", \"description\": \"New category description\" }` |\n| PUT | /categories/{id} | Update an existing category | `200 OK`: Successfully updated the category  <br>`400 Bad Request`: Invalid request body or missing required fields  <br>`404 Not Found`: Category not found  <br>`500 Internal Server Error`: An error occurred while updating the category | `json { \"title\": \"Updated Category\", \"description\": \"Updated category description\" }` | N/A |\n| PATCH | /categories/{id} | Partially update an existing category | `200 OK`:Successfully updated the category  <br>`400 Bad Request`: Invalid request body or missing required fields  <br>`404 Not Found`: Category not found  <br>`500 Internal Server Error`: An error occurred while updating the category | `json { \"description\": \"Updated category description\" }` | N/A |\n| DELETE | /categories/{id} | Delete an existing category | 204 No Content: Successfully deleted the category  <br>`404 Not Found`: category not found  <br>`500 Internal Server Error`: An error occurred while deleting the category | N/A | N/A |\n| \\--- |  |  |  |  |  |\n\n### Collection Resource (/suppliers)\n\n#### HTTP Requests for supplier entity\n\n| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| --- | --- | --- | --- | --- | --- |\n| GET | /suppliers | Get all suppliers | `200 OK`: Successfully retrieved the list of suppliers  <br>`500 InternalServer Error`: An error occurred while retrieving the suppliers | N/A | `json [ { \"supplier_id\": \"1\", \"name\": \"Supplier 1\", \"email\": \"supplier1@example.com\", \"phoneNo\": \"1234567890\" }, { \"supplier_id\": \"2\", \"name\": \"Supplier 2\", \"email\": \"supplier2@example.com\", \"phoneNo\": \"9876543210\" } ]` |\n| GET | /suppliers/{id} | Get supplier with id= {id} | `200 OK`: Successfully retrieved the supplier  <br>`404 Not found`: Supplier with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the supplier | N/A | `json { \"supplier_id\": \"1\", \"name\": \"Supplier 1\", \"email\": \"supplier1@example.com\", \"phoneNo\": \"1234567890\" }` |\n| POST | /suppliers | Create a new supplier | 201 Created: Successfully created the supplier  <br>400 Bad Request: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the supplier | `json { \"name\": \"New Supplier\", \"email\": \"newsupplier@example.com\", \"phoneNo\": \"9876543210\" }` | `json { \"supplier_id\": \"3\", \"name\": \"New Supplier\", \"email\": \"newsupplier@example.com\", \"phoneNo\": \"9876543210\" }` |\n| PUT | /suppliers/{id} | Update an existing supplier | 200 OK: Successfully updated the supplier  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Supplier not found  <br>500 Internal Server Error: An error occurred while updating the supplier | `json { \"name\": \"Updated Supplier\", \"email\": \"updatedsupplier@example.com\", \"phoneNo\": \"1234567890\" }` | N/A |\n| PATCH | /suppliers/{id} | Partially update an existing supplier | 200 OK: Successfully updated the supplier  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Supplier not found  <br>500 Internal Server Error: An error occurred while updating the supplier | `json { \"email\": \"updatedsupplier@example.com\" }` | N/A |\n| DELETE | /suppliers/{id} | Delete an existing supplier | 204 No Content: Successfully deleted the supplier  <br>404 Not Found: Supplier not found  <br>500 Internal Server Error: An error occurred while deleting the supplier | N/A | N/A |\n| \\--- |  |  |  |  |  |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31701132"
+	},
+	"item": [
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Get all catagories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/categories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 14:52:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Electronics\",\n        \"description\": \"Any electronic item\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"category3\",\n        \"description\": \"categroy3 item\"\n    }\n]"
+						},
+						{
+							"name": "Order by name",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/categories?orderByName=true",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories"
+									],
+									"query": [
+										{
+											"key": "orderByName",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get a category",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/categories/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:31:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Electronics\",\n    \"description\": \"Any electronic item\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/categories/5",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"5"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:32:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category not found with id :: 5"
+						}
+					]
+				},
+				{
+					"name": "Create a category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"test category\",\r\n    \"description\": \"this is a test category to demonstrate post requet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"test category\",\r\n    \"description\": \"this is a test category to demonstrate post requet\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:33:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"name\": \"test category\",\n    \"description\": \"this is a test category to demonstrate post requet\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"description\": \"this is a test category to demonstrate post requet\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:34:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Category', fieldName='{name=must not be null}'}"
+						}
+					]
+				},
+				{
+					"name": "Delete a category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/categories/4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"4"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:35:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/categories/1000",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:36:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category not found with id :: 1000"
+						}
+					]
+				},
+				{
+					"name": "Update a category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New name\",\r\n    \"description\": \"this category has been updated using put requet\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"New name\",\r\n    \"description\": \"this category has been updated using put requet\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/4",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"4"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:37:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category not found with id :: 4"
+						},
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"New name\",\r\n    \"description\": \"this category has been updated using put requet\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:38:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category with id:3, updated successfully"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"description\": \"this category has been updated using put requet\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:38:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Category', fieldName='{name=must not be null}'}"
+						}
+					]
+				},
+				{
+					"name": "Partially update a category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"this category has been partially updated in patch\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/categories/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\":\"this category has been partially updated in patch\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:39:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category with id:3, partially updated successfully"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"aa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:40:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Category', fieldName='{name=size must be between 3 and 100}'}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\":\"this\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/categories/10000",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"categories",
+										"10000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:41:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category not found with id :: 10000"
+						}
+					]
+				},
+				{
+					"name": "localhost:8080/categories?orderByName=true",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/categories?orderByName=true",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "orderByName",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| --- | --- | --- | --- | --- | --- |\n| GET | /categories | Get all categories | `200 OK`: Successfully,retrieved the list of categories  <br>`500 Internal Server Error`: An error occurred while retrieving the categories | N/A | `json [ { \"id\": \"1\", \"title\": \"Electronics\", \"description\": \"Electronics category description\" }, { \"id\": \"2\", \"title\": \"Clothing\", \"description\": \"Clothing category description\" } ]` |\n| GET | /categories/{id} | Get category with id= {id} | `200 OK`: Successfully retrieved the category  <br>`404 Not found`: categoriy with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the category | N/A | `json { \"id\": \"1\", \"title\": \"Electronics\", \"description\": \"Electronics category description\" }` |\n| POST | /categories | Create a new category | 201 Created: Successfully created the category  <br>`400 Bad Request`: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the category | `json { \"title\": \"New Category\", \"description\": \"New category description\" }` | `json { \"id\": \"3\", \"title\": \"New Category\", \"description\": \"New category description\" }` |\n| PUT | /categories/{id} | Update an existing category | `200 OK`: Successfully updated the category  <br>`400 Bad Request`: Invalid request body or missing required fields  <br>`404 Not Found`: Category not found  <br>`500 Internal Server Error`: An error occurred while updating the category | `json { \"title\": \"Updated Category\", \"description\": \"Updated category description\" }` | N/A |\n| PATCH | /categories/{id} | Partially update an existing category | `200 OK`:Successfully updated the category  <br>`400 Bad Request`: Invalid request body or missing required fields  <br>`404 Not Found`: Category not found  <br>`500 Internal Server Error`: An error occurred while updating the category | `json { \"description\": \"Updated category description\" }` | N/A |\n| DELETE | /categories/{id} | Delete an existing category | 204 No Content: Successfully deleted the category  <br>`404 Not Found`: category not found  <br>`500 Internal Server Error`: An error occurred while deleting the category | N/A | N/A |\n| \\--- |  |  |  |  |  |"
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Create an Inventory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 15,\r\n    \"productDto\":{\r\n        \"productId\": 12\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/inventories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 15,\r\n    \"productDto\":{\r\n        \"productId\": 12\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:35:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"quantity\": 15,\n    \"lastUpdated\": \"24/4/12: 23:35\",\n    \"productDto\": {\n        \"productId\": 12,\n        \"productName\": \"Asus Labtob rog third generation\",\n        \"prodDescription\": \"A powerfull Labtob\",\n        \"price\": 699.99,\n        \"supplierDto\": {\n            \"id\": 7,\n            \"name\": \"lotfi\",\n            \"email\": \"lotfi@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 6,\n            \"name\": \"Electronics\",\n            \"description\": \"Any electronic item\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 15,\r\n    \"productDto\":{\r\n        \"productId\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "30"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:37:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product not found with id :: 1"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": -1,\r\n    \"productDto\":{\r\n        \"productId\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:38:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Inventory', fieldName='{quantity=Quantity must be positive}'}"
+						}
+					]
+				},
+				{
+					"name": "Get All Inventories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/inventories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/inventories",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:38:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"quantity\": 15,\n        \"lastUpdated\": \"24/4/12: 23:35\",\n        \"productDto\": {\n            \"productId\": 12,\n            \"productName\": \"Asus Labtob rog third generation\",\n            \"prodDescription\": \"A powerfull Labtob\",\n            \"price\": 699.99,\n            \"supplierDto\": {\n                \"id\": 7,\n                \"name\": \"lotfi\",\n                \"email\": \"lotfi@example.com\",\n                \"phoneNo\": \"0569616911\"\n            },\n            \"categoryDto\": {\n                \"id\": 6,\n                \"name\": \"Electronics\",\n                \"description\": \"Any electronic item\"\n            }\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get an Inventory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/inventories/100",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventories",
+								"100"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/inventories/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:42:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"quantity\": 15,\n    \"lastUpdated\": \"24/4/12: 23:35\",\n    \"productDto\": {\n        \"productId\": 12,\n        \"productName\": \"Asus Labtob rog third generation\",\n        \"prodDescription\": \"A powerfull Labtob\",\n        \"price\": 699.99,\n        \"supplierDto\": {\n            \"id\": 7,\n            \"name\": \"lotfi\",\n            \"email\": \"lotfi@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 6,\n            \"name\": \"Electronics\",\n            \"description\": \"Any electronic item\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/inventories/100",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"100"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:43:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Inventory not found with id :: 100"
+						}
+					]
+				},
+				{
+					"name": "Update an Inventory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 100,\r\n     \"productDto\":{\r\n        \"productId\": 12\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/inventories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventories",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:50:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Inventory', fieldName='{productDto=must not be null}'}"
+						},
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 100,\r\n     \"productDto\":{\r\n        \"productId\": 12\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:51:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Inventory with id: 1, updated successfully"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 100,\r\n     \"productDto\":{\r\n        \"productId\": 12\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories/100",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"100"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:51:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Inventory not found with id :: 100"
+						}
+					]
+				},
+				{
+					"name": "Partially update an inventory",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/inventories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventories",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:57:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Inventory with id: 1, partially updated successfully"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": -5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"1"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:58:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Inventory', fieldName='{quantity=must be greater than 0}'}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 50\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/inventories/15",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"15"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 20:58:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Inventory not found with id :: 15"
+						}
+					]
+				},
+				{
+					"name": "Delete an inventory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/inventories/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventories",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/inventories/15",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"15"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 21:03:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Inventory not found with id :: 15"
+						},
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/inventories/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"inventories",
+										"2"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 21:03:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"description": "### Collection Resource (/inventory)\n\n#### HTTP Requests for inventory entity\n\n|  |  |  |  |  |  |\n| --- | --- | --- | --- | --- | --- |\n| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| GET | /inventory | Get all inventory | `200 OK`: Successfully,retrieved the list of inventory  <br>`500 Internal Server Error`: An error occurred while retrieving the inventory | N/A | `json [ { \"id\": \"1\", \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }, { \"id\": \"2\", \"inventory_id\": \"2\",\"productId\": \"2\",\"quantity\": 100, \"last_updated\": \"2023-01-19 03:14:07\" } ]` |\n| GET | /inventory/{id} | Get inventory with id= {id} | `200 OK`: Successfully retrieved the inventory  <br>`404 Not found`: inventory with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the inventory | N/A | `json { \"id\": \"1\", \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` |\n| POST | /inventory | Create a new inventory | 201 Created: Successfully created the inventory  <br>400 Bad Request: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the inventory | `json { \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` | `json { \"id\": \"3\", \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` |\n| PUT | /inventory/{id} | Update an existing inventory | 200 OK: Successfully updated the inventory  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: inventory not found  <br>500 Internal Server Error: An error occurred while updating the inventory | `json { \"inventory_id\": \"1\",\"productId\": \"1\",\"quantity\": 50, \"last_updated\": \"2013-01-19 03:14:07\" }` | N/A |\n| PATCH | /inventory/{id} | Partially update an existing inventory | 200 OK: Successfully updated the inventory  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: inventory not found  <br>500 Internal Server Error: An error occurred while updating the inventory | `json { \"quantity\": 15 }` | N/A |\n| DELETE | /inventory/{id} | Delete an existing inventory | 204 No Content: Successfully deleted the inventory  <br>404 Not Found: inventory not found  <br>500 Internal Server Error: An error occurred while deleting the inventory | N/A | N/A |\n|  |  |  |  |  |  |\n|  |  |  |  |  |  |\n|  |  |  |  |  |  |"
+		},
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "Get all Suppliers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/suppliers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"suppliers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/suppliers",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:58:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"lotfi\",\n        \"email\": \"lotfi@example.com\",\n        \"phoneNo\": \"0569696911\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"lotfi\",\n        \"email\": \"lotfi@example.com\",\n        \"phoneNo\": \"0569696911\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create a supplier",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"lotfi\",\r\n    \"email\":\"lotfi@example.com\",\r\n    \"phoneNo\":\"0569696911\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/suppliers",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"suppliers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"lotfi\",\r\n    \"email\":\"lotfi@example.com\",\r\n    \"phoneNo\":\"0569696911\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:57:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"lotfi\",\n    \"email\": \"lotfi@example.com\",\n    \"phoneNo\": \"0569696911\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"lotfi\",\r\n    \"email\":\"lotfi@example.com\",\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 15:57:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-04-11T15:57:24.172+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/suppliers\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a Supplier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/suppliers/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"suppliers",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/suppliers/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:01:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"lotfi\",\n    \"email\": \"lotfi@example.com\",\n    \"phoneNo\": \"0569696911\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/suppliers/21",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"21"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:02:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Supplier not found with id :: 21"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/suppliers/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"suppliers",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/suppliers/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:03:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/suppliers/1000",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:04:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Supplier not found with id :: 1000"
+						}
+					]
+				},
+				{
+					"name": "Update a Supplier",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"lotfi\",\r\n    \"email\":\"lotfi@example.com\",\r\n    \"phoneNo\":\"0569616911\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/suppliers/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"suppliers",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"updated\",\r\n    \"email\":\"updated@example.com\",\r\n    \"phoneNo\":\"0569616911\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:05:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Supplier with id:2, updated successfully"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \r\n    \"phoneNo\":\"0569616911\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "105"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:05:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Supplier', fieldName='{name=must not be null, email=must not be null}'}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"updated\",\r\n    \"email\":\"updated@example.com\",\r\n    \"phoneNo\":\"0569616911\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers/20",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:06:24 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Supplier not found with id :: 20"
+						}
+					]
+				},
+				{
+					"name": "Partially update a supplier",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"name\":\"updated2\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/suppliers/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"suppliers",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/suppliers/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:07:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-04-11T16:07:21.181+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/suppliers/20\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"name\":\"updated2\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers/20",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:07:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Supplier not found with id :: 20"
+						},
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"name\":\"updated2\"\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/suppliers/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"suppliers",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 Apr 2024 16:08:25 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Supplier with id:2, partially updated successfully"
+						}
+					]
+				}
+			],
+			"description": "### Collection Resource (/suppliers)\n\n#### HTTP Requests for supplier entity\n\n| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| --- | --- | --- | --- | --- | --- |\n| GET | /suppliers | Get all suppliers | `200 OK`: Successfully retrieved the list of suppliers  <br>`500 InternalServer Error`: An error occurred while retrieving the suppliers | N/A | `json [ { \"supplier_id\": \"1\", \"name\": \"Supplier 1\", \"email\": \"supplier1@example.com\", \"phoneNo\": \"1234567890\" }, { \"supplier_id\": \"2\", \"name\": \"Supplier 2\", \"email\": \"supplier2@example.com\", \"phoneNo\": \"9876543210\" } ]` |\n| GET | /suppliers/{id} | Get supplier with id= {id} | `200 OK`: Successfully retrieved the supplier  <br>`404 Not found`: Supplier with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the supplier | N/A | `json { \"supplier_id\": \"1\", \"name\": \"Supplier 1\", \"email\": \"supplier1@example.com\", \"phoneNo\": \"1234567890\" }` |\n| POST | /suppliers | Create a new supplier | 201 Created: Successfully created the supplier  <br>400 Bad Request: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the supplier | `json { \"name\": \"New Supplier\", \"email\": \"newsupplier@example.com\", \"phoneNo\": \"9876543210\" }` | `json { \"supplier_id\": \"3\", \"name\": \"New Supplier\", \"email\": \"newsupplier@example.com\", \"phoneNo\": \"9876543210\" }` |\n| PUT | /suppliers/{id} | Update an existing supplier | 200 OK: Successfully updated the supplier  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Supplier not found  <br>500 Internal Server Error: An error occurred while updating the supplier | `json { \"name\": \"Updated Supplier\", \"email\": \"updatedsupplier@example.com\", \"phoneNo\": \"1234567890\" }` | N/A |\n| PATCH | /suppliers/{id} | Partially update an existing supplier | 200 OK: Successfully updated the supplier  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Supplier not found  <br>500 Internal Server Error: An error occurred while updating the supplier | `json { \"email\": \"updatedsupplier@example.com\" }` | N/A |\n| DELETE | /suppliers/{id} | Delete an existing supplier | 204 No Content: Successfully deleted the supplier  <br>404 Not Found: Supplier not found  <br>500 Internal Server Error: An error occurred while deleting the supplier | N/A | N/A |\n| \\--- |  |  |  |  |  |"
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create a Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"Asus Labtob rog third generation\",\r\n    \"prodDescription\": \"A powerfull Labtob\",\r\n    \"price\": 699.99,\r\n    \"supplierDto\": {\r\n        \"id\": 2\r\n    },\r\n    \"categoryDto\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productName\": \"Sample Product\",\r\n    \"prodDescription\": \"This is a sample product describtion\",\r\n    \"price\": 0,\r\n    \"supplierDto\": {\r\n        \"id\": 2\r\n    },\r\n    \"categoryDto\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 13:41:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Product', fieldName='{price=Price must be greater than 0}'}"
+						},
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productName\": \"Asus Labtob rog third generation\",\r\n    \"prodDescription\": \"A powerfull Labtob\",\r\n    \"price\": 699.99,\r\n    \"supplierDto\": {\r\n        \"id\": 2\r\n    },\r\n    \"categoryDto\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:24:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 9,\n    \"productName\": \"Asus Labtob rog third generation\",\n    \"prodDescription\": \"A powerfull Labtob\",\n    \"price\": 699.99,\n    \"supplierDto\": {\n        \"id\": 2,\n        \"name\": \"lotfi\",\n        \"email\": \"lotfi@example.com\",\n        \"phoneNo\": \"0569616911\"\n    },\n    \"categoryDto\": {\n        \"id\": 1,\n        \"name\": \"Electronics\",\n        \"description\": \"Any electronic item\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/products",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:04:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"productId\": 1,\n        \"productName\": \"Sample Product\",\n        \"prodDescription\": \"This is a sample product describtion\",\n        \"price\": 10.99,\n        \"supplierDto\": {\n            \"id\": 3,\n            \"name\": \"updated2\",\n            \"email\": \"updated@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 6,\n            \"name\": \"Electronics\",\n            \"description\": \"Any electronic item\"\n        }\n    },\n    {\n        \"productId\": 2,\n        \"productName\": \"Sample Product 2\",\n        \"prodDescription\": \"This is a sample product describtion\",\n        \"price\": 10.99,\n        \"supplierDto\": {\n            \"id\": 6,\n            \"name\": \"lotfi\",\n            \"email\": \"lotfi@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 9,\n            \"name\": \"New name\",\n            \"description\": \"this category has been partially updated in patch\"\n        }\n    },\n    {\n        \"productId\": 6,\n        \"productName\": \"HP Labtob omin\",\n        \"prodDescription\": \"A powerfull Labtob\",\n        \"price\": 499.99,\n        \"supplierDto\": {\n            \"id\": 2,\n            \"name\": \"lotfi\",\n            \"email\": \"lotfi@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 11,\n            \"name\": \"Second electonic category\",\n            \"description\": \"this is the second category of electonic\"\n        }\n    },\n    {\n        \"productId\": 7,\n        \"productName\": \"Asus Labtob rog second generation\",\n        \"prodDescription\": \"A powerfull Labtob\",\n        \"price\": 699.99,\n        \"supplierDto\": {\n            \"id\": 2,\n            \"name\": \"lotfi\",\n            \"email\": \"lotfi@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 11,\n            \"name\": \"Second electonic category\",\n            \"description\": \"this is the second category of electonic\"\n        }\n    },\n    {\n        \"productId\": 8,\n        \"productName\": \"Asus Labtob rog third generation\",\n        \"prodDescription\": \"A powerfull Labtob\",\n        \"price\": 699.99,\n        \"supplierDto\": {\n            \"id\": 2,\n            \"name\": \"lotfi\",\n            \"email\": \"lotfi@example.com\",\n            \"phoneNo\": \"0569616911\"\n        },\n        \"categoryDto\": {\n            \"id\": 11,\n            \"name\": \"Second electonic category\",\n            \"description\": \"this is the second category of electonic\"\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get a product",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/products/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:05:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"productId\": 1,\n    \"productName\": \"Sample Product\",\n    \"prodDescription\": \"This is a sample product describtion\",\n    \"price\": 10.99,\n    \"supplierDto\": {\n        \"id\": 3,\n        \"name\": \"updated2\",\n        \"email\": \"updated@example.com\",\n        \"phoneNo\": \"0569616911\"\n    },\n    \"categoryDto\": {\n        \"id\": 6,\n        \"name\": \"Electronics\",\n        \"description\": \"Any electronic item\"\n    }\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/products/1000",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:05:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product not found with id :: 1000"
+						}
+					]
+				},
+				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"productName\": \"Asus Labtob rog Second generation\",\r\n        \"prodDescription\": \"A powerfull Labtob updated2\",\r\n        \"price\": 899.99,\r\n        \"supplierDto\": {\r\n            \"id\": 2\r\n        },\r\n        \"categoryDto\": {\r\n            \"id\": 1\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"productName\": \"Asus Labtob rog Second generation\",\r\n        \"prodDescription\": \"A powerfull Labtob updated2\",\r\n        \"price\": 899.99,\r\n        \"supplierDto\": {\r\n            \"id\": 2\r\n        },\r\n        \"categoryDto\": {\r\n            \"id\": 1\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products/9",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:38:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products/9",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"9"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:38:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2024-04-12T18:38:53.846+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"path\": \"/products/9\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"productName\": \"Asus Labtob rog Second generation\",\r\n        \"prodDescription\": \"A powerfull Labtob updated2\",\r\n        \"price\": 899.99,\r\n        \"supplierDto\": {\r\n            \"id\": 2\r\n        },\r\n        \"categoryDto\": {\r\n            \"id\": 1\r\n        }\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products/100",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"100"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:39:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product not found with id :: 100"
+						}
+					]
+				},
+				{
+					"name": "Partially update a product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"price\": 1099.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n    \"price\": 1099.99\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products/9",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:45:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product with id:9, partially updated successfully"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n    \"price\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products/9",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"9"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:45:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "BadRequestException{resourceName='Product', fieldName='{price=Price must be greater than 0}'}"
+						},
+						{
+							"name": "Not found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n    \"price\": 1099.99\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/products/1000",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:46:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product not found with id :: 1000"
+						}
+					]
+				},
+				{
+					"name": "Delete a product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"10"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/products/10",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"10"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:49:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/products/100",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"products",
+										"100"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 12 Apr 2024 18:49:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product not found with id :: 100"
+						}
+					]
+				}
+			],
+			"description": "| Method | Endpoint | Description | HTTP Status Codes | Request Sample | Response Sample |\n| --- | --- | --- | --- | --- | --- |\n| GET | /products | Get all products | `200 OK`: Successfully,retrieved the list of products  <br>`500 Internal Server Error`: An error occurred while retrieving the products | N/A | `json [ { \"id\": \"1\", \"categoryId\": \"1\",\"supplierId\": \"1\",\"prod_name\": \"Product 1\", \"prod_describtion\": \"description\",\"price\": 50 }, { \"id\": \"2\", \"categoryId\": \"1\",\"supplierId\": \"1\",\"prod_name\": \"Product 2\", \"prod_describtion\": \"description 2\",\"price\": 100 } ]` |\n| GET | /products/{id} | Get product with id= {id} | `200 OK`: Successfully retrieved the product  <br>`404 Not found`: Product with given id not found  <br>`500 Internal Server Error`: An error occurred while retrieving the products | N/A | `json { \"id\": \"1\", \"categoryId\": \"1\",\"supplierId\": \"1\",\"prod_name\": \"Product 1\", \"prod_describtion\": \"description\",\"price\": 50 }` |\n| POST | /products | Create a new product | 201 Created: Successfully created the product  <br>400 Bad Request: Invalid request body or missing required fields  <br>500 Internal Server Error: An error occurred while creating the product | `json { \"name\": \"New Product\", \"categoryId\": \"1\",\"supplierId\": \"1\", \"prod_describtion\": \"\", \"price\": 20 }` | `json { \"id\": \"3\", \"name\": \"New Product\", \"categoryId\": \"1\", \"supplierId\": \"1\", \"prod_describtion\": \"\", \"price\": 20 }` |\n| PUT | /products/{id} | Update an existing product | 200 OK: Successfully updated the product  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Product not found  <br>500 Internal Server Error: An error occurred while updating the product | `json { \"name\": \"Updated Product\", \"UpdatedcategoryId\": \"2\",\"updatedsupplierId\": \"1\", \"prod_describtion\": \"Updated\", \"price\": 10 }` \\`\\`\\` | N/A |\n| PATCH | /products/{id} | Partially update an existing product | 200 OK: Successfully updated the product  <br>400 Bad Request: Invalid request body or missing required fields  <br>404 Not Found: Product not found  <br>500 Internal Server Error: An error occurred while updating the product | `json { \"price\": 150 }` | N/A |\n| DELETE | /products/{id} | Delete an existing product | 204 No Content: Successfully deleted the product  <br>404 Not Found: Product not found  <br>500 Internal Server Error: An error occurred while deleting the product | N/A | N/A |"
+		}
+	]
+}
