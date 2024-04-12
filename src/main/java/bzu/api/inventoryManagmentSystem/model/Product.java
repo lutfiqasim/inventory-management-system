@@ -1,6 +1,8 @@
 package bzu.api.inventoryManagmentSystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Product {
@@ -8,11 +10,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "prod_name", nullable = false)
+    @NotBlank
+    @Column(name = "prod_name", nullable = false, length = 50)
     private String productName;
-    @Column(name = "prod_description")
+    @Column(name = "prod_description", length = 50)
     private String prodDescription;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "FLOAT CHECK (price > 0)")
     private float price;
     @ManyToOne
     @JoinColumn(name = "supplierId")
@@ -80,6 +83,14 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productName.equals(product.productName);
     }
 
     @Override
