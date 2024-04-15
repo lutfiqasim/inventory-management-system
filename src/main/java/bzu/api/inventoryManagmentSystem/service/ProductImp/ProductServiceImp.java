@@ -18,12 +18,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImp implements ProductService {
-    @Autowired
     private ProductRepository productRepository;
-    @Autowired
     private CategoryRepository categoryRepository;
-    @Autowired
+
     private SupplierRepository supplierRepository;
+
+    @Autowired
+    public ProductServiceImp(ProductRepository productRepository, CategoryRepository categoryRepository, SupplierRepository supplierRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+        this.supplierRepository = supplierRepository;
+    }
 
     @Override
     public ProductDto createProduct(ProductDto dto) {

@@ -18,10 +18,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class InventoryServiceImp implements InventoryService {
-    @Autowired
+
     private InventoryRepository inventoryRepository;
-    @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    public InventoryServiceImp(InventoryRepository inventoryRepository, ProductRepository productRepository) {
+        this.inventoryRepository = inventoryRepository;
+        this.productRepository = productRepository;
+    }
 
     @Override
     public InventoryDto createInventory(InventoryDto dto) {

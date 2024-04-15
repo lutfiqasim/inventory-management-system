@@ -16,8 +16,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class SupplierServiceImp implements SupplierService {
-    @Autowired
     private SupplierRepository supplierRepository;
+
+    @Autowired
+    public SupplierServiceImp(SupplierRepository supplierRepository) {
+        this.supplierRepository = supplierRepository;
+    }
 
     @Override
     public SupplierDto createSupplier(SupplierDto supplierDto) {

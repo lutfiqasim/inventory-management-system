@@ -15,8 +15,12 @@ import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImp implements CategoryService {
-    @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    public CategoryServiceImp(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     public CategoryDto createCategory(CategoryDto categoryDto) {
